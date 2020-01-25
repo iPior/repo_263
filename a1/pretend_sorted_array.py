@@ -12,13 +12,19 @@ def pretend_sorted_array(commands):
   Post: return list of outputs
   '''
   output = []
+  pointer_list = []
+  pre_pointer_list = []
   '''
   We know that 'initialize' will always be the first command.
   So we initalize by building a max-heap.
   '''
   c = commands[0].split() #splitting by spaces the first command into a list
   if (c[0] == "initialize"):
-    sorted_list = init(c[1:]) #initialize helper to create a sorted list
+    
+    for num in c[1:]:
+        pointer_list.append(int(num))
+    
+    initialize(pointer_list, pre_pointer_list)#initialize helper to create a sorted list
   
   '''
   Now we look at the rest of the commands in the list, 
@@ -43,10 +49,8 @@ def pretend_sorted_array(commands):
       
 #Helper Functions
 def pointer_left(A):
-  #remove pointer
-  #predecessor
-  #find and add pointer
-  #return new list
+    #Check pre_pointer_list, if empty no change to pointer
+    #If not empty remove elememt at [-1] and insert into MinHeap
   return 0
 
 def pointer_right(A):
@@ -64,11 +68,8 @@ def get_value(A):
   #find pointer and return key
   return p
 
-def initialize(A):
-  #check items c[1:]
-  #put into heap
-  #return datatype
-  return ADT
+def initialize(pointer_list, pre_pointer_list):
+    
 
 if __name__ == '__main__':
 
