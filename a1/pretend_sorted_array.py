@@ -54,9 +54,8 @@ def pointer_left(A):
   return 0
 
 def pointer_right(A):
-  #remove pointer
-  #sucessor
-  #find and add pointer
+  #remove "root"/min element (extract min)
+  #add to pre_pointer_list
   return 0
 
 def insert(A, i):
@@ -65,11 +64,12 @@ def insert(A, i):
   return 0
   
 def get_value(A):
-  #find pointer and return key
+  #check root
   return p
 
 def initialize(pointer_list, pre_pointer_list):
-    
+    #build min heap
+    #any changes to root, add to pre_pointer_list
 
 if __name__ == '__main__':
 
