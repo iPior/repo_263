@@ -11,20 +11,29 @@ def pretend_sorted_array(commands):
   Pre: commands is a list of commands
   Post: return list of outputs
   '''
-  # TODO: implement this function
   output = []
-  for i in commands:
+  '''
+  We know that 'initialize' will always be the first command.
+  So we initalize by building a max-heap.
+  '''
+  c = commands[0].split() #splitting by spaces the first command into a list
+  if (c[0] == "initialize"):
+    sorted_list = init(c[1:]) #initialize helper to create a sorted list
+  
+  '''
+  Now we look at the rest of the commands in the list, 
+  loop through and deal with each command.
+  '''
+  for i in commands[1:]:
     c = i.split()
-    if (c[0] == "initialize"):
-      sorted_list = init(c[1:])
-      #initialize helper
+
+    #pointer_right helper 
+    if(c[0] == "move_pointer_right"):
       
-    elif(c[0] == "move_pointer_right"):
-      #pointer_right helper
-    
+    #pointer_left helper
     elif(c[0] == "move_pointer_left"):
-      #pointer_left helper
       
+    #insert helper
     elif (c[0] == "insert"):
       insert(A, int(c[1]))
           
@@ -55,9 +64,9 @@ def get_value(A):
   #find pointer and return key
   return p
 
-def init(A):
+def initialize(A):
   #check items c[1:]
-  #put into ADT
+  #put into heap
   #return datatype
   return ADT
 
