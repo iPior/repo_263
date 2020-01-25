@@ -40,7 +40,7 @@ def pointer_left(A):
   #return new list
   return 0
 
-def point_right(A):
+def pointer_right(A):
   #remove pointer
   #sucessor
   #find and add pointer
