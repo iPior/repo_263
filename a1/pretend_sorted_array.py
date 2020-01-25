@@ -38,18 +38,19 @@ def pointer_left(A):
   #predecessor
   #find and add pointer
   #return new list
-  return A  
+  return 0
 
 def point_right(A):
   #remove pointer
   #sucessor
   #find and add pointer
-  #return new list
-  return A
+  return 0
 
 def insert(A, i):
-  #No clue
+  #insert new i into A
+  #upadte_pointer if new element goes before pointer
   return 0
+  
 def get_value(A):
   #find pointer and return key
   return p
@@ -58,7 +59,7 @@ def init(A):
   #check items c[1:]
   #put into ADT
   #return datatype
-  return 
+  return ADT
 
 if __name__ == '__main__':
 
