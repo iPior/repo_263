@@ -11,8 +11,54 @@ def pretend_sorted_array(commands):
   Pre: commands is a list of commands
   Post: return list of outputs
   '''
-  pass # TODO: implement this function
+  # TODO: implement this function
+  output = []
+  for i in commands:
+    c = i.split()
+    if (c[0] == "initialize"):
+      sorted_list = init(c[1:])
+      #initialize helper
+      
+    elif(c[0] == "move_pointer_right"):
+      #pointer_right helper
+    
+    elif(c[0] == "move_pointer_left"):
+      #pointer_left helper
+      
+    elif (c[0] == "insert"):
+      insert(A, int(c[1]))
+          
+    #add pointer to output list
+    #get val helper       
+  return output
+      
+#Helper Functions
+def pointer_left(A):
+  #remove pointer
+  #predecessor
+  #find and add pointer
+  #return new list
+  return A  
 
+def point_right(A):
+  #remove pointer
+  #sucessor
+  #find and add pointer
+  #return new list
+  return A
+
+def insert(A, i):
+  #No clue
+  return 0
+def get_value(A):
+  #find pointer and return key
+  return p
+
+def init(A):
+  #check items c[1:]
+  #put into ADT
+  #return datatype
+  return 
 
 if __name__ == '__main__':
 
