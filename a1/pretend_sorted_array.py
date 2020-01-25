@@ -84,3 +84,28 @@ if __name__ == '__main__':
       'move_pointer_right', 
       'move_pointer_right',
     ])
+
+'''
+BuildMaxHeap(A):
+   for i ← floor(n/2) downto 1:
+      BubbleDown(A, i)
+'''
+
+#def BubbleDown(heap, i):
+# while i*2 <= heap.size:
+#   curr_p = heap[i].priority
+#   left_p = heap[2*i].priority
+#   right_p = heap[2*i + 1].priority # -inf if not exist
+# 
+#   # heap property is satisfied
+#   if curr_p >= left_pandcurr_p >= right_p:
+#     break
+#   # left child has higher priority
+#   elif left_p >= right_p:
+#     PQ[i], PQ[2*i] = PQ[2*i], PQ[i]
+#     i = 2*i
+# 
+#   # right child has higher priority
+#   else:
+#     PQ[i], PQ[2*i + 1] = PQ[2*i + 1], PQ[i]
+#     i = 2*i + 1
