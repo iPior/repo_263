@@ -21,13 +21,17 @@ def pretend_sorted_array(commands):
   c = commands[0].split() #splitting by spaces the first command into a list
   if (c[0] == "initialize"):
     first_pointer = int(c[1])
+    '''
     for num in c[1:]:
         if(int(num) > first_pointer):
             pointer_list.append(int(num))
         else:
             pre_pointer.append(int(num))
     
-    
+    pre_pointer.sort()
+    '''
+    for num in c[1:]:
+        pointer_list.append(int(num))
     initialize(pointer_list, pre_pointer)#initialize helper to create a sorted list
   
   '''
@@ -51,7 +55,7 @@ def pretend_sorted_array(commands):
           
     #add pointer to output list
     output.append(get_value(pointer_list))
-    print(get_value(pointer_list)
+    print(get_value(pointer_list))
     
   print(output)
   return output
@@ -71,11 +75,20 @@ def pointer_right(pointer_list, pre_pointer):
   #add to pre_pointer
   pre_pointer.append(root)
 
-def insert(A, i):
-  #insert new i into A
-  A.append(i)
-  BubbleUp(A, len(A)-1)
-  
+def insert(A, x):
+    #insert new i into A
+    A.append(x)
+    #  Bubble Up pg 28 of course notes slightly modified
+    i = len(A) - 1
+    while (i > 0):
+        current = A[i]
+        parent = A[i//2]
+        if current >= parent:
+            break
+        else:
+            A[i] , A[i//2] = A[i//2], A[i]
+            i//2
+            
 def get_value(A):
   #check root
   return A[0]
@@ -83,23 +96,51 @@ def get_value(A):
 def initialize(pointer_list, pre_pointer):
     #build min heap
     i = floor(len(pointer_list)/2)
-    while (i >= 0):
+    pointer = poonter_list[0]
+    while (i > 0):
         BubbleDown(pointer_list, i)
         i = i-1
-#    order pre_pointer?
-    j = floor(len(pre_pointer)/2)
-    while (j>=0):
-        BubbleDown(pre_pointer, j)
+    while(pointer != pointer_list[0]):
+        pre_pointer.append(ExtractMin(pointer_list))
+    
+        
+
 #return root element
 def ExtractMin(A):
-
+    temp = A[0]
+    A[0] = A[len(A)-1]
+    BubbleDown(A, 0)
+    return temp
+    
 #move node in position i down as needed
 def BubbleDown(A, i):
-
+    while(i*2) <= len(A)-1:
+        root = A[i]
+        left_child = NULL
+        right_child = NULL
+        
+        if (2*i+1 < len(A)-1):
+            left_child = A[2*i+1]
+            
+        if (2*i+2<len(A)-1):
+            right_child = A[2*i+2]
+            
+            
+        if (root <= left_child and root <= right_child):
+            break
+            
+        elif (left_child <= right_child):
+            A[i], A[i*2] = A[2*i], A[i]
+            i = 2*i
+            
+        else:
+            A[i], A[i*2 + 1] = A[2*i + 1], A[i]
+            i = 2*i + 1
+        
 #move node in position i up as needed
 def BubbleUp(A, i):
-
-
+    
+    
 if __name__ == '__main__':
 
   # some small test cases
