@@ -13,18 +13,22 @@ def pretend_sorted_array(commands):
   '''
   output = []
   pointer_list = []
-  pre_pointer_list = []
+  pre_pointer = []
   '''
   We know that 'initialize' will always be the first command.
   So we initalize by building a max-heap.
   '''
   c = commands[0].split() #splitting by spaces the first command into a list
   if (c[0] == "initialize"):
-    
+    first_pointer = int(c[1])
     for num in c[1:]:
-        pointer_list.append(int(num))
+        if(int(num) > first_pointer):
+            pointer_list.append(int(num))
+        else:
+            pre_pointer.append(int(num))
     
-    initialize(pointer_list, pre_pointer_list)#initialize helper to create a sorted list
+    
+    initialize(pointer_list, pre_pointer)#initialize helper to create a sorted list
   
   '''
   Now we look at the rest of the commands in the list, 
@@ -48,15 +52,19 @@ def pretend_sorted_array(commands):
   return output
       
 #Helper Functions
-def pointer_left(A):
-    #Check pre_pointer_list, if empty no change to pointer
+def pointer_left(pointer_list, pre_pointer):
+    #Check pre_pointer, if empty no change to pointer
+    if (len(pre_pointer) == 0):
+        break
     #If not empty remove elememt at [-1] and insert into MinHeap
-  return 0
+    new_pointer = pre_pointer.pop()
+    insert(pointer_list, new_pointer)
 
-def pointer_right(A):
+def pointer_right(pointer_list, pre_pointer):
   #remove "root"/min element (extract min)
-  #add to pre_pointer_list
-  return 0
+  root = ExtractMin(pointer_list)
+  #add to pre_pointer
+  pre_pointer.append(root)
 
 def insert(A, i):
   #insert new i into A
@@ -65,11 +73,18 @@ def insert(A, i):
   
 def get_value(A):
   #check root
-  return p
+  return A[0]
 
-def initialize(pointer_list, pre_pointer_list):
+def initialize(pointer_list, pre_pointer):
     #build min heap
-    #any changes to root, add to pre_pointer_list
+    i = floor(len(pointer_list)/2)
+    while (i >= 0):
+        BubbleDown(pointer_list, i)
+        i = i-1
+#    order pre_pointer?
+    j = floor(len(pre_pointer)/2)
+    while (j>=0):
+        BubbleDown(pre_pointer, j)
 
 if __name__ == '__main__':
 
