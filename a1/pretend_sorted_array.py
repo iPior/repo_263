@@ -60,6 +60,9 @@ def pretend_sorted_array(commands):
           
     #add pointer to output list
     output.append(get_value(pointer_list))
+    print(c[0])
+    print(pointer_list)
+    print(pre_pointer)
     print(get_value(pointer_list))
     
   print(output)
@@ -126,27 +129,27 @@ def ExtractMin(A):
     
 #move node in position i down as needed
 def BubbleDown(A, i):
-    while(i*2) <= len(A)-1:
+    while(i*2 <= len(A)-1):
         root = A[i]
-        left_child = root
-        right_child = root
+        left_child = root+1
+        right_child = root+1
         
-        if (2*i < len(A)-1):
-            left_child = A[2*i]
+        if (2*i+1 < len(A)-1):
+            left_child = A[2*i+1]
             
         if (2*i+1<len(A)-1):
-            right_child = A[2*i+1]
+            right_child = A[2*i+2]
             
             
         if (root <= left_child and root <= right_child):
             break
             
         elif (left_child <= right_child):
-            A[i], A[i*2] = A[2*i], A[i]
+            A[i], A[i*2+1] = A[2*i+1], A[i]
             i = 2*i
             
         else:
-            A[i], A[i*2 + 1] = A[2*i + 1], A[i]
+            A[i], A[i*2 + 2] = A[2*i + 2], A[i]
             i = 2*i + 1
         
 if __name__ == '__main__':
