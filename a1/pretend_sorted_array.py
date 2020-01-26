@@ -18,9 +18,9 @@ def pretend_sorted_array(commands):
   We know that 'initialize' will always be the first command.
   So we initalize by building a max-heap.
   '''
-  c = commands[0].split() #splitting by spaces the first command into a list
-  if (c[0] == "initialize"):
-    first_pointer = int(c[1])
+  init = commands[0].split() #splitting by spaces the first command into a list
+  if (init[0] == "initialize"):
+    first_pointer = int(init[1])
     '''
     for num in c[1:]:
         if(int(num) > first_pointer):
@@ -30,7 +30,7 @@ def pretend_sorted_array(commands):
     
     pre_pointer.sort()
     '''
-    for num in c[1:]:
+    for num in init[1:]:
         pointer_list.append(int(num))
     initialize(pointer_list, pre_pointer)#initialize helper to create a sorted list
   
@@ -38,9 +38,12 @@ def pretend_sorted_array(commands):
   Now we look at the rest of the commands in the list, 
   loop through and deal with each command.
   '''
+  i = 1
+  #while (i < len(commands)):
   for i in commands[1:]:
+    #c = commands[i].split()
     c = i.split()
-
+    
     #pointer_right helper 
     if(c[0] == "move_pointer_right"):
       pointer_right(pointer_list, pre_pointer)
@@ -51,7 +54,7 @@ def pretend_sorted_array(commands):
       
     #insert helper
     elif (c[0] == "insert"):
-      insert(A, int(c[1]))
+      insert(pointer_list, int(c[1]))
           
     #add pointer to output list
     output.append(get_value(pointer_list))
@@ -62,18 +65,17 @@ def pretend_sorted_array(commands):
       
 #Helper Functions
 def pointer_left(pointer_list, pre_pointer):
-    #Check pre_pointer, if empty no change to pointer
-    if (len(pre_pointer) == 0):
-        break
-    #If not empty remove elememt at [-1] and insert into MinHeap
-    new_pointer = pre_pointer.pop()
-    insert(pointer_list, new_pointer)
+    #Check pre_pointer, if not empty change pointer
+    if (len(pre_pointer) != 0):
+      new_pointer = pre_pointer.pop()
+      insert(pointer_list, new_pointer)
 
 def pointer_right(pointer_list, pre_pointer):
   #remove "root"/min element (extract min)
-  root = ExtractMin(pointer_list)
-  #add to pre_pointer
-  pre_pointer.append(root)
+  if(len(pointer_list) != 1):
+    root = ExtractMin(pointer_list)
+    #add to pre_pointer
+    pre_pointer.append(root)
 
 def insert(A, x):
     #insert new i into A
@@ -95,8 +97,8 @@ def get_value(A):
 
 def initialize(pointer_list, pre_pointer):
     #build min heap
-    i = floor(len(pointer_list)/2)
-    pointer = poonter_list[0]
+    i = (len(pointer_list)//2)
+    pointer = pointer_list[0]
     while (i > 0):
         BubbleDown(pointer_list, i)
         i = i-1
@@ -116,8 +118,8 @@ def ExtractMin(A):
 def BubbleDown(A, i):
     while(i*2) <= len(A)-1:
         root = A[i]
-        left_child = NULL
-        right_child = NULL
+        left_child = root
+        right_child = root
         
         if (2*i+1 < len(A)-1):
             left_child = A[2*i+1]
@@ -137,12 +139,7 @@ def BubbleDown(A, i):
             A[i], A[i*2 + 1] = A[2*i + 1], A[i]
             i = 2*i + 1
         
-#move node in position i up as needed
-def BubbleUp(A, i):
-    
-    
 if __name__ == '__main__':
-
   # some small test cases
   # Case 1
   assert [4, 4, 7, 7, 6, 7, 8, 12] == pretend_sorted_array(
