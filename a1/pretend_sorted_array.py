@@ -90,10 +90,15 @@ def initialize(pointer_list, pre_pointer):
     j = floor(len(pre_pointer)/2)
     while (j>=0):
         BubbleDown(pre_pointer, j)
-        
+#return root element
 def ExtractMin(A):
 
+#move node in position i down as needed
 def BubbleDown(A, i):
+
+#move node in position i up as needed
+def BubbleUp(A, i):
+
 
 if __name__ == '__main__':
 
