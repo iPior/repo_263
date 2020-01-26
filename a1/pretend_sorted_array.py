@@ -33,12 +33,14 @@ def pretend_sorted_array(commands):
     for num in init[1:]:
         pointer_list.append(int(num))
     initialize(pointer_list, pre_pointer)#initialize helper to create a sorted list
+    output.append(get_value(pointer_list))
+    print(get_value(pointer_list))
   
   '''
   Now we look at the rest of the commands in the list, 
   loop through and deal with each command.
   '''
-  i = 1
+  #i = 1
   #while (i < len(commands)):
   for i in commands[1:]:
     #c = commands[i].split()
@@ -83,13 +85,20 @@ def insert(A, x):
     #  Bubble Up pg 28 of course notes slightly modified
     i = len(A) - 1
     while (i > 0):
-        current = A[i]
+      current = A[i]
+      if (i%2 == 0):
+        parent = A[i//2 - 1]
+      else:
         parent = A[i//2]
-        if current >= parent:
-            break
-        else:
+      if current >= parent:
+          break
+      else:
+          if (i%2 == 0):
+            A[i] , A[i//2 - 1] = A[i//2 - 1], A[i]
+            i = i//2 - 1
+          else:
             A[i] , A[i//2] = A[i//2], A[i]
-            i//2
+            i = i//2          
             
 def get_value(A):
   #check root
@@ -111,6 +120,7 @@ def initialize(pointer_list, pre_pointer):
 def ExtractMin(A):
     temp = A[0]
     A[0] = A[len(A)-1]
+    A.pop()
     BubbleDown(A, 0)
     return temp
     
@@ -121,11 +131,11 @@ def BubbleDown(A, i):
         left_child = root
         right_child = root
         
-        if (2*i+1 < len(A)-1):
-            left_child = A[2*i+1]
+        if (2*i < len(A)-1):
+            left_child = A[2*i]
             
-        if (2*i+2<len(A)-1):
-            right_child = A[2*i+2]
+        if (2*i+1<len(A)-1):
+            right_child = A[2*i+1]
             
             
         if (root <= left_child and root <= right_child):
