@@ -39,16 +39,21 @@ def pretend_sorted_array(commands):
 
     #pointer_right helper 
     if(c[0] == "move_pointer_right"):
+      pointer_right(pointer_list, pre_pointer)
       
     #pointer_left helper
     elif(c[0] == "move_pointer_left"):
+      pointer_left(pointer_list, pre_pointer)
       
     #insert helper
     elif (c[0] == "insert"):
       insert(A, int(c[1]))
           
     #add pointer to output list
-    #get val helper       
+    output.append(get_value(pointer_list))
+    print(get_value(pointer_list)
+    
+  print(output)
   return output
       
 #Helper Functions
@@ -68,8 +73,8 @@ def pointer_right(pointer_list, pre_pointer):
 
 def insert(A, i):
   #insert new i into A
-  #upadte_pointer if new element goes before pointer
-  return 0
+  A.append(i)
+  BubbleUp(A, len(A)-1)
   
 def get_value(A):
   #check root
@@ -85,6 +90,10 @@ def initialize(pointer_list, pre_pointer):
     j = floor(len(pre_pointer)/2)
     while (j>=0):
         BubbleDown(pre_pointer, j)
+        
+def ExtractMin(A):
+
+def BubbleDown(A, i):
 
 if __name__ == '__main__':
 
