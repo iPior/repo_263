@@ -2,8 +2,14 @@
 CSC263 Winter 2020
 Problem Set 1 Starter Code
 University of Toronto Mississauga
-'''
+--------------------------------
+Vivekanand Gadhia - 1004165253
+Piotr Szaran - 1004171424
 
+NOTE: the following functions were taken and modified 
+from the course notes or lecture slides (Lec 02)
+ExtractMax, BuildMaxHeap, BubbleUp
+'''
 # Do NOT add any "import" statements
 
 def pretend_sorted_array(commands):
@@ -116,6 +122,7 @@ def initialize(pointer_list, pre_pointer):
 
 #return root element
 def ExtractMin(A):
+	#modification of ExtractMax from course notes 27 and lec slides (Lec 02)
     temp = A[0]
     A[0] = A[len(A)-1]
     A.pop()
@@ -124,6 +131,7 @@ def ExtractMin(A):
     
 #move node in position i down as needed
 def BubbleDown(A, i):
+	# code from course notes pg. 29/30
     while(i*2 <= len(A)-1):
         root = A[i]
         left_child = root+1
@@ -160,28 +168,3 @@ if __name__ == '__main__':
       'move_pointer_right', 
       'move_pointer_right',
     ])
-
-'''
-BuildMaxHeap(A):
-   for i ← floor(n/2) downto 1:
-      BubbleDown(A, i)
-'''
-
-#def BubbleDown(heap, i):
-# while i*2 <= heap.size:
-#   curr_p = heap[i].priority
-#   left_p = heap[2*i].priority
-#   right_p = heap[2*i + 1].priority # -inf if not exist
-# 
-#   # heap property is satisfied
-#   if curr_p >= left_pandcurr_p >= right_p:
-#     break
-#   # left child has higher priority
-#   elif left_p >= right_p:
-#     PQ[i], PQ[2*i] = PQ[2*i], PQ[i]
-#     i = 2*i
-# 
-#   # right child has higher priority
-#   else:
-#     PQ[i], PQ[2*i + 1] = PQ[2*i + 1], PQ[i]
-#     i = 2*i + 1
