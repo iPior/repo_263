@@ -34,7 +34,6 @@ def pretend_sorted_array(commands):
         pointer_list.append(int(num))
     initialize(pointer_list, pre_pointer)#initialize helper to create a sorted list
     output.append(get_value(pointer_list))
-    print(get_value(pointer_list))
   
   '''
   Now we look at the rest of the commands in the list, 
@@ -60,10 +59,6 @@ def pretend_sorted_array(commands):
           
     #add pointer to output list
     output.append(get_value(pointer_list))
-    print(c[0])
-    print(pointer_list)
-    print(pre_pointer)
-    print(get_value(pointer_list))
     
   print(output)
   return output
