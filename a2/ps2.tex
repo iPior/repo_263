@@ -1,0 +1,207 @@
+\documentclass{assignment-263}
+
+\usepackage{color}
+
+\usepackage{mathtools}
+\anum{2}
+\course{CSC263}
+\duedate{Thursday, February 27, 2020}
+\filename{ps2sol.pdf, ps2sol.tex and triangle.py}
+
+\newcommand{\bigOh}{\mathcal{O}}
+
+\begin{document}
+\think
+
+  \begin{enumerate}
+
+%  
+\item[1.] \textbf{[total: 6]}
+  You are given an array $\texttt{A}$ that contains $n$ \textbf{distinct}
+  numbers. The task is to compute another array $\texttt{B}$ such that for all
+  $\texttt{j},$ we want $\texttt{B[j]}$ to be the number of elements in
+  $\texttt{A}$ that appear after $\texttt{A[j]}$ and are strictly
+  smaller than $\texttt{A[j]}.$
+
+  As an example, if you are given the input array
+  $\texttt{A = [8, 10, 4, 7, 3, 5, 9, 1]},$ then you want to output
+  the array $\texttt{B = [5, 6, 2, 3, 1, 1, 1, 0]}.$ This is because,
+  in $\texttt{A},$ there are 5 elements that appear after
+  $\texttt{A[0] = 8}$ and are smaller than \texttt{8} (i.e. \texttt{4,
+    7, 3, 5, 1}), there are 6 elements that appear after
+  $\texttt{A[1] = 10}$ and are smaller than \texttt{10}
+  (i.e. \texttt{4, 7, 3, 5, 9, 1}), etc.
+  
+
+  Design an algorithm to compute $\texttt{B}$ given $\texttt{A}$ as
+  input. The \textbf{worst case} complexity of your algorithm
+  \textbf{must be $\bigOh(n\log n)$}.
+
+  This algorithm can be described in brief given what we have learned
+  in class. 
+  
+  Write a clear description of your algorithm (what data structure is
+  used and how the algorithm utilizes the data structure) and justify
+  its correctness and runtime. As usual, please use learned algorithms
+  and analysis results from lectures and tutorials without repeating
+  them.
+
+  \item[2.] \textbf{[total: 6]} Suppose that we want to generate a BST by
+  inserting the keys 1 through $n$ into an initially empty BST (assume
+  $n > 1$). Assume that the insert sequence is a random permutation of
+  $[1,2,3,\dots, n]$ and each permutation is equally likely to
+  occur. Answer the following questions.
+  %
+  \begin{enumerate}[(a)]
+
+  \item What is the maximum possible height of the generated BST?
+    Describe \textbf{four} different insert sequences that would
+    result in a BST with the maximum height.
+
+  \item By picking a random permutation of $[1,2,3,\dots, n]$ as the
+    insert sequence, what is the probability that the resulting BST
+    has the maximum height? Show detailed steps of your calculation
+    with clear justification.
+  \end{enumerate}
+  
+\item[3.] \textbf{[total: 12]} In this problem, you will design the data
+  structure for implementing an ADT called
+  \texttt{RESTAURANT-SET}. Below is the description of the ADT.
+  \begin{description}
+  \item[Objects:] A collection of restaurants in the same city. Each
+    \texttt{restaurant} has the following attributes:
+    \begin{itemize}
+    \item \texttt{restaurant.name}: a string which is the name of the
+      restaurant. Each restaurant has a unique name, i.e., no two
+      restaurants have the same name.
+    \item \texttt{restaurant.cost}: a decimal value such as $22.99$
+      that denotes the cost of a 1 person meal at the restaurant.  For
+      simplicity, assume that each restaurant's cost is unique,
+      i.e., no two restaurants have the same cost.
+    \item \texttt{restaurant.rating}: a decimal value between $0.0$ and
+      $5.0$, e.g., $0.012$, $3.1415926$. For simplicity, assume that
+      each restaurant's rating value is unique, i.e., no two
+      restaurants have the same rating value.
+    \end{itemize}
+  \item[Operations:] \mbox{}
+    \begin{itemize}
+      %
+    \item \texttt{GET-RESTAURANT(R, name)}: returns the restaurant
+      with name \texttt{name} if it exists in the
+      \texttt{RESTAURANT-SET R}; returns \texttt{NIL} if the restaurant
+      does not exist in \texttt{R}.
+      %
+    \item \texttt{ADD-RESTAURANT(R, restaurant)}: Add a restaurant
+      \texttt{restaurant} to the \texttt{RESTAURANT-SET R}. You may
+      assume that \texttt{restaurant} has a unique name, a unique
+      cost and a unique rating.
+    \item \texttt{AVG-COST(R, r1, r2),\ r1 $\le$ r2}: considers all
+      restaurants that have a rating $\texttt{r}$ such that
+      $\texttt{r1} \le \texttt{r} < \texttt{r2},$ and returns the
+      average of the meal costs over all these restaurants.
+
+      e.g. If \texttt{R} contains the following restaurants:
+      \texttt{(A, 22, 3), (B, 35, 4.5), (C, 24, 3.9), (D, 30, 4)}
+      where each tuple represents \texttt{(name, cost, rating)}, then
+      the query \texttt{AVG-COST(R, 3, 4)} must return the average of
+      the costs of restaurants that have ratings $\ge 3$ and $< 4,$
+      which are \texttt{A} and \texttt{C}. Thus it must return
+      $\frac{22 + 24}{2} = 23.$
+    \end{itemize}
+    %
+  \item[Requirements:] Let $n$ be the size of $R$,
+    \begin{itemize}
+    \item \texttt{GET-RESTAURANT(R, name)} must have average-case runtime
+      $\mathcal{O}(1)$.
+    \item \texttt{ADD-RESTAURANT(R, restaurant)} must have
+      \textbf{\color{red} average-case} runtime $\mathcal{O}(\log n)$.
+    \item \texttt{AVG-COST(R, r1, r2)} must have worst-case runtime
+      $\mathcal{O}(\log n)$.
+    \end{itemize}
+  \end{description}
+
+  Give a \emph{detailed} description of the design of your data
+  structure by answering the following questions.
+
+  \begin{enumerate}[(a)]
+  \item \textbf{[2]} Which data structure(s) do you use in your design? What is the
+    key of each data structure? What attributes does each node in your
+    data structure(s) keep?
+
+  \item \textbf{[2]} Explain concisely in English how your \texttt{GET-RESTAURANT}
+    operation works, and justify its runtime.
+
+  \item \textbf{[2]} Explain concisely in English how your \texttt{ADD-RESTAURANT}
+    operation works, and justify its runtime. In particular, explain
+    why all the attributes kept in each node can be maintained
+    efficiently upon the addition of the new node.
+
+  \item \textbf{[6]} Explain how your \texttt{AVG-COST} operation works and
+    \textbf{write the pseudocode} of this operation, then justify its
+    runtime.
+  \end{enumerate}
+
+  \textbf{Note}: As usual, please do \textbf{not} repeat algorithm
+  details or runtime analyses from class or the textbook --- just
+  directly refer to known results as needed.
+
+
+  
+
+\program
+
+\item[4.] \textbf{[total: 12]}
+  In this problem, we will deal with the notion
+  of \textbf{pseudo-similar} triangles.
+
+  Each triangle is represented by a 3-tuple of positive numbers,
+  specifying the sides of the triangle.
+
+  We say that two triangles \texttt{t1} and \texttt{t2} are
+  \textbf{pseudo-similar} if triangle \texttt{t2} can be obtained by
+  rotating and reflecting triangle \texttt{t1}.
+
+  For example, $\texttt{t1 = (6, 9, 12)}$ is \textbf{pseudo-similar}
+  to $\texttt{t2 = (6, 12, 9)}$ since \texttt{t2} can be obtained by
+  rotating and reflecting \texttt{t1}.
+%
+  \[ \texttt{(6, 9, 12)}
+    \xrightarrow{\text{rotate}} \texttt{(9, 12, 6)}
+    \xrightarrow{\text{reflect}} \texttt{(6, 12, 9)}
+  \]
+
+  However, $\texttt{t1 = (6, 9, 6)}$ is not \textbf{pseudo-similar} to
+  $\texttt{t2 = (6, 9, 9)}.$
+
+  We say that two triangles are the same {\bf kind} if they are
+  \textbf{pseudo-similar}.
+
+  In Python, a triangle will be represented as a 3-tuple of positive
+  integers.
+
+  Your task is to write the function \verb|num_triangle_kinds|, which
+  determines the \textbf{number} of different kinds of triangles in
+  the list. \textbf{(8 points)}
+
+
+Requirements:
+\begin{itemize}
+\item Your code must be written in Python 3, and the filename must be \verb|triangle.py|.
+\item We will grade only the \verb|num_triangle_kinds| function; please do not change its signature in the starter code. include as many helper functions as you wish.
+   \item You are {\bf not} allowed to use the built-in Python
+			dictionary or set.
+			\item To get full marks, your algorithm must have average-case runtime
+				$\mathcal{O}(n)$. You can assume Simple Uniform Random Hashing.
+   \end{itemize}
+
+\textbf{Write-up (4 points)}: in your \verb|ps3.pdf/ps3.tex| files, include the following: an explanation of how your code works, justification of correctness, and
+ justification of desired $\mathcal{O}(n)$ average-case runtime.
+
+ \end{enumerate}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
