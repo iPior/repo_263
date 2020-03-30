@@ -13,18 +13,18 @@ class Graph():
         self.V = []
 
     def add_edge(self, u, v):
-        if v in self.V:
-            i = self.V.index(v)
-            if u not in self.E[i]:
-            	self.E[i].append(u)
-        else:
-            self.V.append(v)
-            i = self.V.index(v)
-            if u not in self.E[i]:
-            	self.E.append([u])
+	if v in self.V:
+	    i = self.V.index(v)
+	    if u not in self.E[i]:
+		self.E[i].append(u)
+	else:
+	    self.V.append(v)
+	    self.E.append([u])
+	    self.V.append(u)
+	    self.E.append([])
 #Helpers
 def cycle_helper(graph, v_index, visited, recur_visit):
-    '''
+    '''	
     Pre:  graph is the given graph with V verticies and E edges
           v_index is index of visiting vertex in graph.V
           visited is lst of vertices with visiting status
@@ -76,10 +76,6 @@ def can_visit_all_cities(numCities, dependencies):
     g = Graph()
     for edge in dependencies:
         g.add_edge(edge[0], edge[1])
-    for edge in dependencies:
-        if edge[0] not in g.V:
-            g.V.append(edge[0])
-            g.E.append([])
     #Check for cycle. If there is a cycle return true
     start = g.V[0]
     if check_cycle(g):
