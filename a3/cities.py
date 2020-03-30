@@ -17,8 +17,8 @@ class Graph():
         if v in self.V:
             i = self.V.index(v)
 
-        if u not in self.E[i]:
-            self.E[i].append(u)
+            if u not in self.E[i]:
+                self.E[i].append(u)
 
         else:
             self.V.append(v)
