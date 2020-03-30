@@ -13,15 +13,19 @@ class Graph():
         self.V = []
 
     def add_edge(self, u, v):
-	if v in self.V:
-	    i = self.V.index(v)
-	    if u not in self.E[i]:
-		self.E[i].append(u)
-	else:
-	    self.V.append(v)
-	    self.E.append([u])
-	    self.V.append(u)
-	    self.E.append([])
+
+        if v in self.V:
+            i = self.V.index(v)
+
+        if u not in self.E[i]:
+            self.E[i].append(u)
+
+        else:
+            self.V.append(v)
+            self.E.append([u])
+            self.V.append(u)
+            self.E.append([])
+
 #Helpers
 def cycle_helper(graph, v_index, visited, recur_visit):
     '''	
